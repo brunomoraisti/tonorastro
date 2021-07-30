@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/branco">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:layout_marginTop="14dp">
+
+            <!--TEXTO DA ACTIVITY-->
+            <!--            <LinearLayout
+                            android:id="@+id/lytContaMeusDados"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="18dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_weight="0.1"
+                                    app:srcCompat="@drawable/ic_profile_preto" />
+
+                                <TextView
+                                    android:id="@+id/tvContaMeusDados"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.9"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="20dp"
+                                    android:text="Meus dados" />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.1"
+                                    app:srcCompat="@drawable/ic_next"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="18dp"
+                                android:background="@color/cinza_claro" />
+                        </LinearLayout>-->
+
+            <!--TEXTO DA ACTIVITY-->
+            <!--            <LinearLayout
+                            android:id="@+id/lytFazerLogin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="18dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_weight="0.1"
+                                    app:srcCompat="@drawable/ic_profile_preto" />
+
+                                <TextView
+                                    android:id="@+id/tvFazerLogin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.9"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="20dp"
+                                    android:text="Fazer Login" />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.1"
+                                    app:srcCompat="@drawable/ic_next"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="18dp"
+                                android:background="@color/cinza_claro" />
+                        </LinearLayout>-->
+
+            <!--TEXTO DA ACTIVITY-->
+
+            <LinearLayout
+                android:id="@+id/lytAtualizacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_notification_black" />
+
+                    <TextView
+                        android:id="@+id/tvAtualização"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="Atualização automática" />
+
+                    <Switch
+                        android:id="@+id/swAtualizacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:paddingLeft="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/cinza_claro" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lytIntervaloAtualizacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_clock" />
+
+                    <TextView
+                        android:id="@+id/tvIntervaloAtualizacao"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="Intervalo de atualização" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_next"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/cinza_claro" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lytNotificacoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_notification" />
+
+                    <TextView
+                        android:id="@+id/tvNotificacoes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="Notificacões" />
+
+                    <Switch
+                        android:id="@+id/swNotificacoes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:paddingLeft="8dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/cinza_claro" />
+            </LinearLayout>
+
+            <!--TEXTO DA ACTIVITY-->
+            <!--            <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="18dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/lytMinhaCidade"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_weight="0.1"
+                                    app:srcCompat="@drawable/ic_local_preto" />
+
+                                <TextView
+                                    android:id="@+id/tvMinhaCidade"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.9"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="20dp"
+                                    android:text="Minha Cidade" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.1"
+                                    app:srcCompat="@drawable/ic_next"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="18dp"
+                                android:background="@color/cinza_claro" />
+                        </LinearLayout>-->
+
+            <!--TEXTO DA ACTIVITY-->
+            <LinearLayout
+                android:id="@+id/lytContaFaleConosco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_faleconosco_preto" />
+
+                    <TextView
+                        android:id="@+id/tvContaFaleConosco"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="Fale Conosco" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_next"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/cinza_claro" />
+            </LinearLayout>
+
+            <!--TEXTO DA ACTIVITY-->
+                        <LinearLayout
+                            android:id="@+id/lytAvaliarConfig"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="18dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="25dp"
+                                    android:layout_weight="0.1"
+                                    app:srcCompat="@drawable/ic_estrela" />
+
+                                <TextView
+                                    android:id="@+id/tvAvaliarConfig"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.9"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="20dp"
+                                    android:text="Avaliar aplicativo" />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.1"
+                                    app:srcCompat="@drawable/ic_next"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="18dp"
+                                android:background="@color/cinza_claro" />
+                        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lytCompartilharConfig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_compartilhar_preto"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                        android:id="@+id/tvCompartilharConfig"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="Compartilhar" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_next"
+                        tools:ignore="VectorDrawableCompat" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/cinza_claro" />
+            </LinearLayout>
+
+            <!--TEXTO DA ACTIVITY-->
+            <!--<LinearLayout
+                android:id="@+id/lytRemoverPropaganda"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnRemoverPropaganda"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/screen_botao_c_borda_primary"
+                    android:text="Remover propaganda"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="*Remova as propagandas e contribua com o projeto SOS193!"/>
+            </LinearLayout>-->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

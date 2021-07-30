@@ -1,0 +1,44 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Tonorastro" parent="Theme.MaterialComponents.Light">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item> // COLOR PRINCIPAL - ACTION BAR
+        <item name="colorPrimaryVariant">@color/branco</item> // COR FUNDO
+        <item name="colorOnPrimary">@color/branco</item> // COR FUNDO DA TELA
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/night_fundo</item>
+        <item name="colorSecondaryVariant">@color/cinza</item>
+        <item name="colorOnSecondary">@color/cinza_claro    </item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:fontFamily">@font/poppinsregular</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Tonorastro.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:fontFamily">@font/poppinsregular</item>
+    </style>
+
+    <style name="AppTheme.ToolbarPrincipal" parent="ThemeOverlay.AppCompat.Light" >
+        <item name="android:fontFamily">@font/poppinsregular</item>
+        <item name="android:textColorSecondary">@color/preto</item>
+        <item name="android:textColor">@color/amarelo</item>
+        <item name="displayOptions">useLogo|showHome|showTitle</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:statusBarColor" tools:targetApi="21">@color/branco</item>
+        <item name="android:tint">?attr/colorPrimaryVariant</item>
+        <item name="android:textColorHint">@color/branco</item>
+        <item name="android:editTextColor">@color/branco</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="Theme.Tonorastro.Collapsing">
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+    </style>
+
+    <style name="Theme.Tonorastro.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.tonorastro.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

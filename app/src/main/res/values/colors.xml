@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="colorPrimary">#1976D2</color>
+    <color name="colorPrimaryDark">#8b0000</color>
+    <color name="colorAccent">#8b0000</color>
+
+    <color name="amarelo">#FDD835</color>
+    <color name="branco">#FFFFFF</color>
+    <color name="preto">#000000</color>
+    <color name="cinza_escuro">#3f3e3e</color>
+    <color name="cinza_claro">#dfdfdf</color>
+    <color name="cinza_muito_claro">#F6F6F6</color>
+    <color name="cinza">#a6a29f</color>
+    <color name="fundo">#f5f0eb</color>
+    <color name="linha">#F4F4F4</color>
+
+    <color name="night_actionbar">#2A2F32</color>
+    <color name="night_fundo">#090E11</color>
+    <color name="night_card_enable">#323739</color>
+    <color name="night_card_disable">#131C21</color>
+</resources>

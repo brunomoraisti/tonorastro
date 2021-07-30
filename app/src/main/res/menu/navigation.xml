@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_todos"
+        android:icon="@drawable/ic_navigation_todos"
+        android:enabled="true"
+        android:title="Todos" />
+    <item
+        android:id="@+id/navigation_pendentes"
+        android:icon="@drawable/ic_navigation_pendente"
+        android:enabled="true"
+        android:title="Pendentes" />
+    <item
+        android:id="@+id/navigation_entregue"
+        android:icon="@drawable/ic_navigation_entregue"
+        android:enabled="true"
+        android:title="Entregues" />
+
+    <item
+        android:id="@+id/navigation_config"
+        android:icon="@drawable/ic_smartphone"
+        android:enabled="true"
+        android:title="Config."/>
+
+</menu>
+
+

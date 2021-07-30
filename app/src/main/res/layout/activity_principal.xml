@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation">
+
+        <include layout="@layout/toolbar_emergencias" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llAdviewPrincipal"
+                android:gravity="center"
+                android:layout_gravity="center">
+                <FrameLayout
+                    android:id="@+id/adview_container_principal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBarPrincipal"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/progress_bar"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimaryVariant"/>
+
+        </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/ic_add"
+            android:contentDescription="Add"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/amarelo"
+            android:background="@color/amarelo"
+            android:tint="@color/colorPrimary"
+            app:tint="@color/colorPrimary"
+            app:backgroundTint="@color/amarelo"
+            android:clickable="true" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:clickable="true"
+        android:elevation="16dp"
+        app:elevation="16dp"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@drawable/tab_color_selector"
+        app:itemTextColor="@drawable/tab_color_selector"
+        app:menu="@menu/navigation"
+        app:layout_behavior="@string/bottom_sheet_behavior"/>
+</RelativeLayout>

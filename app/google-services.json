@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "926108127259",
+    "project_id": "tonorastro-bb9bd",
+    "storage_bucket": "tonorastro-bb9bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:926108127259:android:ba85aa5a60e1034eb028be",
+        "android_client_info": {
+          "package_name": "com.bmorais.tonorastro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "926108127259-058phe9rced9th3ht945dh67f9jpikmp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBHz9RXJmx3BMDmoYlZfNXVWkfq92ucv8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "926108127259-058phe9rced9th3ht945dh67f9jpikmp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
