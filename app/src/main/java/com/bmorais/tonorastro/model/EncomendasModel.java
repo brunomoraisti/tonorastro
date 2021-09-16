@@ -233,6 +233,7 @@ public class EncomendasModel {
                         try {
                             jsonBody = new JSONObject(response.body().toString());
                             for (EncomendasModel encomendasModel : arrayEncomendas) {
+                                notification = false;
                                 // PEGA O OBJETO ENCOMENDA
                                 JSONObject itemObjeto = jsonBody.getJSONObject(encomendasModel.getObjeto());
 
@@ -291,8 +292,8 @@ public class EncomendasModel {
                                     }
 
                                     if (notification && SharedPrefManager.getInstance(activity).pegarCampo(Variaveis.NOTIFICACOES).equals("1")) {
-                                        Intent intent = new Intent(activity.getApplicationContext(), PrincipalActivity.class);
-                                        MyNotificationManager mNotificationManager = new MyNotificationManager(activity.getApplicationContext());
+                                        Intent intent = new Intent(activity, PrincipalActivity.class);
+                                        MyNotificationManager mNotificationManager = new MyNotificationManager(activity);
                                         mNotificationManager.showNotification("O objeto " + encomendasModel.getNome() + " teve novo andamento", notificationAction, "", intent);
                                     }
                                 }
