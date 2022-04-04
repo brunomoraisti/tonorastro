@@ -1,5 +1,6 @@
 package com.bmorais.tonorastro.firebase;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -29,7 +30,7 @@ import java.text.SimpleDateFormat;
 public class MyNotificationManager {
 
     public static int ID_NOTIFICATION = 234;
-    public static String ID_CHANNEL = "Padrão";
+    public static String ID_CHANNEL = "Default";
 
     private Context mCtx;
 
@@ -40,6 +41,7 @@ public class MyNotificationManager {
     //the method will show a big notification with an image
     //parameters are title for message title, message for message text, url of the big image and an intent that will open
     //when you will tap on the notification
+    @SuppressLint("UnspecifiedImmutableFlag")
     public void showNotification(String title, String message, String urlImagem, Intent intent) {
 
         long date = System.currentTimeMillis();
@@ -49,7 +51,13 @@ public class MyNotificationManager {
         ID_NOTIFICATION = Integer.parseInt(dateString);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(mCtx, ID_NOTIFICATION, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent resultPendingIntent = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            resultPendingIntent = PendingIntent.getActivity(mCtx, ID_NOTIFICATION, intent, PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            resultPendingIntent = PendingIntent.getActivity
+                    (mCtx, ID_NOTIFICATION, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        }
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mCtx, ID_CHANNEL);
         Notification notification;

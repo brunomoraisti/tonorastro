@@ -66,7 +66,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PrincipalActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
+public class PrincipalActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private Toolbar toolbar;
     public ViewPager viewPager;
@@ -97,7 +97,8 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) { }
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
         });
 
         view = findViewById(android.R.id.content);
@@ -105,9 +106,9 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
         adContainerView = findViewById(R.id.adview_container_principal);
 
         pBar = view.findViewById(R.id.progressBarPrincipal);
-        pBar.setVisibility(View.VISIBLE);
+        //pBar.setVisibility(View.VISIBLE);
 
-        appBarLayout = (AppBarLayout)findViewById(R.id.appBar_Emergencias);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appBar_Emergencias);
         toolbar = (Toolbar) findViewById(R.id.toolbar_emergencia);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -169,7 +170,7 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
                 final MaterialButton btnIncluir = viewInflated.findViewById(R.id.btnFrameIncluir);
                 final MaterialButton btnCancelar = viewInflated.findViewById(R.id.btnFrameCancelar);
 
-                if (textoColado.length()==13) {
+                if (textoColado.length() == 13) {
                     inputObjeto.setText(textoColado);
                     inputNomeObjeto.requestFocus();
                 } else {
@@ -192,10 +193,10 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
                         if (inputObjeto.getText().toString().isEmpty()) {
                             inputObjetoLayout.setError("Informe o código de rastreamento");
                             return;
-                        }else if (inputObjeto.getText().toString().length()!=13) {
+                        } else if (inputObjeto.getText().toString().length() != 13) {
                             inputObjetoLayout.setError("O código precisa ter 13 caractéres");
                             return;
-                        }else if (inputNomeObjeto.getText().toString().isEmpty()) {
+                        } else if (inputNomeObjeto.getText().toString().isEmpty()) {
                             inputNomeObjetoLayout.setError("Informe a descrição da encomenda");
                             return;
                         }
@@ -297,12 +298,11 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
                 ((TodosPage) PrincipalActivity.pageAdapter.getItem(0)).adapter.setSearchResult(((TodosPage) PrincipalActivity.pageAdapter.getItem(0)).arrayEncomendas);
 
 
-
                 return true; // Return true to collapse action view
 
             }
         });
-        
+
         atualizar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -316,7 +316,7 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
 
     }
 
-    public void atualizarLista(){
+    public void atualizarLista() {
         Snackbar.make(view, "Aguarde! Buscando andamentos...", Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
         EncomendasDao encomendasDao = new EncomendasDao(PrincipalActivity.this);
@@ -329,7 +329,7 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
             throwables.printStackTrace();
         }
 
-        if (encomendasModelArrayList !=null) {
+        if (encomendasModelArrayList != null) {
             EncomendasModel.buscarAlteracoes(PrincipalActivity.this, encomendasModelArrayList, true);
         }
     }
@@ -373,58 +373,56 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
 
     private void insereObjeto(String objeto, String nomeobjeto) {
 
-        pBar.setVisibility(View.VISIBLE);
 
         if (Funcoes.verificaConexao(PrincipalActivity.this)) {
+            //pBar.setVisibility(View.VISIBLE);
 
-            if (Funcoes.verificaConexao(PrincipalActivity.this)) {
+            Call<JsonObject> call = new RetrofitInicializador().getRetrofitService().getRastreamento(objeto);
+            call.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    if (response.isSuccessful() && response.body().toString() != null) {
 
-                Call<JsonObject> call = new RetrofitInicializador().getRetrofitService().getRastreamento(objeto);
-                call.enqueue(new Callback<JsonObject>() {
-                    @Override
-                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                        if (response.isSuccessful() && response.body().toString() != null) {
+                        if (response.body().get("error").toString().equals("false")) {
+                            JSONObject json = null;
+                            JSONArray jsonAndamentos = null;
+                            EncomendasModel encomenda = null;
+                            AndamentosModel andamento = new AndamentosModel();
 
-                            if (response.body().get("error").toString().equals("false")){
-                                JSONObject json = null;
-                                JSONArray jsonAndamentos = null;
-                                EncomendasModel encomenda = null;
-                                AndamentosModel andamento = new AndamentosModel();
+                            EncomendasDao encomendasDao = new EncomendasDao(PrincipalActivity.this);
+                            AndamentosDao andamentosDao = new AndamentosDao(PrincipalActivity.this);
 
-                                EncomendasDao encomendasDao = new EncomendasDao(PrincipalActivity.this);
-                                AndamentosDao andamentosDao = new AndamentosDao(PrincipalActivity.this);
+                            try {
+                                json = new JSONObject(response.body().toString());
+                                jsonAndamentos = json.getJSONArray("progress");
 
-                                try {
-                                    json = new JSONObject(response.body().toString());
-                                    jsonAndamentos = json.getJSONArray("progress");
+                                encomenda = new EncomendasModel(nomeobjeto, Funcoes.getDateSQL(), objeto, json.getInt("days"));
+                                encomenda.setLeitura(1); // OBJETO LIDO
+                                encomenda.setSituacao(1); // OBJETO COM ENTREGA PENDENTE
 
-                                    encomenda = new EncomendasModel(nomeobjeto, Funcoes.getDateSQL(), objeto,  json.getInt("days"));
-                                    encomenda.setLeitura(1); // OBJETO LIDO
-                                    encomenda.setSituacao(1); // OBJETO COM ENTREGA PENDENTE
+                                encomendasDao.abrir();
+                                encomenda.setCodencomenda((int) encomendasDao.inserir(encomenda));
+                                encomendasDao.fechar();
 
-                                    encomendasDao.abrir();
-                                    encomenda.setCodencomenda((int) encomendasDao.inserir(encomenda));
-                                    encomendasDao.fechar();
+                                for (int i = 0; i < jsonAndamentos.length(); i++) {
+                                    JSONObject item = jsonAndamentos.getJSONObject(i);
 
-                                    for (int i = 0; i<jsonAndamentos.length(); i++) {
-                                        JSONObject item = jsonAndamentos.getJSONObject(i);
+                                    andamento.setDataandamento(item.getString("date"));
+                                    andamento.setLocal(item.getString("location"));
+                                    andamento.setAction(item.getString("action"));
+                                    andamento.setMessage(item.getString("message"));
+                                    andamento.setEncomenda(encomenda);
 
-                                        andamento.setDataandamento(item.getString("date"));
-                                        andamento.setLocal(item.getString("location"));
-                                        andamento.setAction(item.getString("action"));
-                                        andamento.setMessage(item.getString("message"));
-                                        andamento.setEncomenda(encomenda);
+                                    if (item.getString("action").contains("Objeto entregue")) {
+                                        encomenda.setSituacao(0); // SETA 0 PARA ENTREGA REALIZADA; 1 PARA PENDENTE
+                                        encomendasDao.abrir();
+                                        encomendasDao.atualizar(encomenda);
+                                        encomendasDao.fechar();
+                                    }
 
-                                        if (item.getString("action").contains("Objeto entregue")) {
-                                            encomenda.setSituacao(0); // SETA 0 PARA ENTREGA REALIZADA; 1 PARA PENDENTE
-                                            encomendasDao.abrir();
-                                            encomendasDao.atualizar(encomenda);
-                                            encomendasDao.fechar();
-                                        }
-
-                                        andamentosDao.abrir();
-                                        andamentosDao.inserir(andamento);
-                                        andamentosDao.fechar();
+                                    andamentosDao.abrir();
+                                    andamentosDao.inserir(andamento);
+                                    andamentosDao.fechar();
 
                                         /*if (!item.getString("action").contains("Objeto entregue")) {
                                             andamentosDao.abrir();
@@ -433,63 +431,77 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
                                         }*/
 
 
-                                    }
-
-                                    if (encomenda.getCodencomenda() > 0) {
-                                        Snackbar.make(view, "Objeto cadastrado", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                                        onResume();
-                                    } else {
-                                        Snackbar.make(view, "Objeto não cadastrado", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
                                 }
 
-                                pBar.setVisibility(View.GONE);
-                                buscarEncomendas();
-
-                                //((PendentesPage) PrincipalActivity.pageAdapter.getItem(1)).adapter.add(0,encomenda);
-
-                                //arrayObjetos.add(encomenda);
-                               //adapter.addAll(arrayObjetos);
-
-                            } else {
-
-                                EncomendasModel encomenda = null;
-                                EncomendasDao encomendasDao = new EncomendasDao(PrincipalActivity.this);
-
-                                encomenda = new EncomendasModel(nomeobjeto, Funcoes.getDateSQL(), objeto,  0);
-                                encomenda.setLeitura(1);
-                                encomenda.setSituacao(2); // OBJETO SEM ANDAMENTOS
-
-                                try {
-                                    encomendasDao.abrir();
-                                    encomenda.setCodencomenda((int) encomendasDao.inserir(encomenda));
-                                    encomendasDao.fechar();
-                                } catch (SQLException throwables) {
-                                    throwables.printStackTrace();
+                                if (encomenda.getCodencomenda() > 0) {
+                                    Snackbar.make(view, "Objeto cadastrado", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                                    onResume();
+                                } else {
+                                    Snackbar.make(view, "Objeto não cadastrado", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                                 }
-
-                                buscarEncomendas();
-                                pBar.setVisibility(View.GONE);
-                                Snackbar.make(view, "Objeto não encontrado", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
                             }
 
-                            Log.i("##VOLLEY##", "REGISTRADO COM SUCESSO " + response.body().get("error"));
-                        }
-                    }
+                            //pBar.setVisibility(View.GONE);
+                            buscarEncomendas();
 
-                    @Override
-                    public void onFailure(Call<JsonObject> call, Throwable t) {
-                        Log.i("##VOLLEY##", "FALHA AO REGISTRAR");
+                            //((PendentesPage) PrincipalActivity.pageAdapter.getItem(1)).adapter.add(0,encomenda);
+
+                            //arrayObjetos.add(encomenda);
+                            //adapter.addAll(arrayObjetos);
+
+                        } else {
+
+                            EncomendasModel encomenda = null;
+                            EncomendasDao encomendasDao = new EncomendasDao(PrincipalActivity.this);
+
+                            encomenda = new EncomendasModel(nomeobjeto, Funcoes.getDateSQL(), objeto, 0);
+                            encomenda.setLeitura(1);
+                            encomenda.setSituacao(2); // OBJETO SEM ANDAMENTOS
+
+                            try {
+                                encomendasDao.abrir();
+                                encomenda.setCodencomenda((int) encomendasDao.inserir(encomenda));
+                                encomendasDao.fechar();
+                            } catch (SQLException throwables) {
+                                throwables.printStackTrace();
+                            }
+
+                            buscarEncomendas();
+                            //pBar.setVisibility(View.GONE);
+                            Snackbar.make(view, "Objeto não encontrado", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                        }
+
+                        Log.i("##VOLLEY##", "REGISTRADO COM SUCESSO " + response.body().get("error"));
                     }
-                });
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Log.i("##VOLLEY##", "FALHA AO REGISTRAR");
+                }
+            });
+
+        } else {
+            EncomendasModel encomenda = null;
+            EncomendasDao encomendasDao = new EncomendasDao(PrincipalActivity.this);
+
+            encomenda = new EncomendasModel(nomeobjeto, Funcoes.getDateSQL(), objeto, 0);
+            encomenda.setLeitura(1);
+            encomenda.setSituacao(2); // OBJETO SEM ANDAMENTOS
+
+            try {
+                encomendasDao.abrir();
+                encomenda.setCodencomenda((int) encomendasDao.inserir(encomenda));
+                encomendasDao.fechar();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
-        }
-        else
-        {
+
+            buscarEncomendas();
             Snackbar.make(view, "Sem internet!", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
     }
@@ -502,7 +514,7 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
 
         llAdviewPrincipal = findViewById(R.id.llAdviewPrincipal);
         //VARIAVEL DO PROJETO DA PROPAGANDA
-        if(SharedPrefManager.getInstance(this).pegarCampo(Variaveis.REMOVE_ADS).equals("1")) {
+        if (SharedPrefManager.getInstance(this).pegarCampo(Variaveis.REMOVE_ADS).equals("1")) {
             llAdviewPrincipal.setVisibility(View.GONE);
         } else {
             mAdView = new AdView(this);
@@ -520,20 +532,20 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (mLastDayNightMode!=Integer.parseInt(SharedPrefManager.getInstance(this).pegarCampo(Variaveis.THEMA_TELA)))
+        if (mLastDayNightMode != Integer.parseInt(SharedPrefManager.getInstance(this).pegarCampo(Variaveis.THEMA_TELA)))
             recreate();
     }
 
-    public void buscarEncomendas(){
+    public void buscarEncomendas() {
 
-        pBar.setVisibility(View.VISIBLE);
-        if (((TodosPage) PrincipalActivity.pageAdapter.getItem(0)).adapter!=null)
+        //pBar.setVisibility(View.VISIBLE);
+        if (((TodosPage) PrincipalActivity.pageAdapter.getItem(0)).adapter != null)
             ((TodosPage) PrincipalActivity.pageAdapter.getItem(0)).buscarEncomendaTodos(this);
 
-        if (((PendentesPage) PrincipalActivity.pageAdapter.getItem(1)).adapter!=null)
+        if (((PendentesPage) PrincipalActivity.pageAdapter.getItem(1)).adapter != null)
             ((PendentesPage) PrincipalActivity.pageAdapter.getItem(1)).buscarEncomendaPendente(this);
 
-        if (((EntreguesPage) PrincipalActivity.pageAdapter.getItem(2)).adapter!=null)
+        if (((EntreguesPage) PrincipalActivity.pageAdapter.getItem(2)).adapter != null)
             ((EntreguesPage) PrincipalActivity.pageAdapter.getItem(2)).buscarEncomendaEntregue(this);
     }
 }
