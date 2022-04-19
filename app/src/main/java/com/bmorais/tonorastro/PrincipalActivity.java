@@ -89,10 +89,10 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mLastDayNightMode = Integer.parseInt(SharedPrefManager.getInstance(this).pegarCampo(Variaveis.THEMA_TELA));
-        Funcoes.setThemaDayNight(this);
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_principal);
+
 
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -216,7 +216,23 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
             }
         });
 
-        atualizarLista();
+        Log.v("### JWT: ", RetrofitInicializador.getTokenJWT(""));
+
+        llAdviewPrincipal = findViewById(R.id.llAdviewPrincipal);
+        //VARIAVEL DO PROJETO DA PROPAGANDA
+        if (SharedPrefManager.getInstance(this).pegarCampo(Variaveis.REMOVE_ADS).equals("1")) {
+            llAdviewPrincipal.setVisibility(View.GONE);
+        } else {
+            mAdView = new AdView(this);
+            mAdView.setAdUnitId("ca-app-pub-1598135185151212/3492791757");
+            adContainerView.addView(mAdView);
+            adContainerView.post(new Runnable() {
+                @Override
+                public void run() {
+                    Funcoes.loadBanner(PrincipalActivity.this, mAdView);
+                }
+            });
+        }
 
     }
 
@@ -503,37 +519,22 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
 
             buscarEncomendas();
             Snackbar.make(view, "Sem internet!", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            recreate();
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        Log.v("### JWT: ", RetrofitInicializador.getTokenJWT(""));
-
-        llAdviewPrincipal = findViewById(R.id.llAdviewPrincipal);
-        //VARIAVEL DO PROJETO DA PROPAGANDA
-        if (SharedPrefManager.getInstance(this).pegarCampo(Variaveis.REMOVE_ADS).equals("1")) {
-            llAdviewPrincipal.setVisibility(View.GONE);
-        } else {
-            mAdView = new AdView(this);
-            mAdView.setAdUnitId("ca-app-pub-1598135185151212/3492791757");
-            adContainerView.addView(mAdView);
-            adContainerView.post(new Runnable() {
-                @Override
-                public void run() {
-                    Funcoes.loadBanner(PrincipalActivity.this, mAdView);
-                }
-            });
-        }
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (mLastDayNightMode != Integer.parseInt(SharedPrefManager.getInstance(this).pegarCampo(Variaveis.THEMA_TELA)))
-            recreate();
+        //if (mLastDayNightMode != Integer.parseInt(SharedPrefManager.getInstance(this).pegarCampo(Variaveis.THEMA_TELA)))
+        //    recreate();
+        atualizarLista();
+
     }
 
     public void buscarEncomendas() {
@@ -547,5 +548,7 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
 
         if (((EntreguesPage) PrincipalActivity.pageAdapter.getItem(2)).adapter != null)
             ((EntreguesPage) PrincipalActivity.pageAdapter.getItem(2)).buscarEncomendaEntregue(this);
+
+        recreate();
     }
 }

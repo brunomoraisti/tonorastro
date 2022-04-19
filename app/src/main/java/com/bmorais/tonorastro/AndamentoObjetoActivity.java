@@ -1,6 +1,7 @@
 package com.bmorais.tonorastro;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,9 +56,8 @@ public class AndamentoObjetoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mLastDayNightMode = Integer.parseInt(SharedPrefManager.getInstance(this).pegarCampo(Variaveis.THEMA_TELA));
-        Funcoes.setThemaDayNight(this);
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);;
         setContentView(R.layout.activity_andamento_objeto);
 
         // Initialize the Mobile Ads SDK.
@@ -236,7 +236,7 @@ public class AndamentoObjetoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (mLastDayNightMode!=Integer.parseInt(SharedPrefManager.getInstance(this).pegarCampo(Variaveis.THEMA_TELA)))
-            recreate();
+        //if (mLastDayNightMode!=Integer.parseInt(SharedPrefManager.getInstance(this).pegarCampo(Variaveis.THEMA_TELA)))
+        //    recreate();
     }
 }
