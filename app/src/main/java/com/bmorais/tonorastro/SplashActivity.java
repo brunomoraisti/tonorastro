@@ -40,17 +40,6 @@ public class SplashActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        // CHAMAR A TELA PRINCIPAL COM O TEMPO ESTIPUILADO
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashActivity.this, PrincipalActivity.class);
-                SplashActivity.this.startActivity(intent);
-                SplashActivity.this.finish();
-            }
-        }, 1000);
-
         //INICIALIZANDO VARIAVEL
         if (SharedPrefManager.getInstance(this).pegarCampo(Variaveis.REMOVE_ADS)==null)
             SharedPrefManager.getInstance(this).gravarCampo(Variaveis.REMOVE_ADS,"0");
@@ -61,10 +50,11 @@ public class SplashActivity extends AppCompatActivity {
 
         if (SharedPrefManager.getInstance(this).pegarCampo(Variaveis.ATUALIZACAO)==null) {
             SharedPrefManager.getInstance(this).gravarCampo(Variaveis.ATUALIZACAO, "1");
-            SharedPrefManager.getInstance(this).gravarCampo(Variaveis.ATUALIZACAO_MINUTOS, "60");
-            SharedPrefManager.getInstance(this).gravarCampo(Variaveis.ATUALIZACAO_MINUTOS_NOME, "1 hora");
-            MyWorkerManager.ativarWorkManager(this,60,Variaveis.ATUALIZACAO);
+            SharedPrefManager.getInstance(this).gravarCampo(Variaveis.ATUALIZACAO_MINUTOS, "30");
+            SharedPrefManager.getInstance(this).gravarCampo(Variaveis.ATUALIZACAO_MINUTOS_NOME, "30 minutos");
+            MyWorkerManager.ativarWorkManager(this,30,Variaveis.ATUALIZACAO);
         }
+
 
         if (SharedPrefManager.getInstance(this).pegarCampo(Variaveis.THEMA_TELA)==null) {
             SharedPrefManager.getInstance(this).gravarCampo(Variaveis.THEMA_TELA, "1");
@@ -77,6 +67,16 @@ public class SplashActivity extends AppCompatActivity {
             MyWorkerManager.ativarWorkManager(this,30,"updateEncomendas");
             MyAlarmReceiver.startAlertPeriodico(this,8,0);
         }*/
+
+        // CHAMAR A TELA PRINCIPAL COM O TEMPO ESTIPUILADO
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashActivity.this, PrincipalActivity.class);
+                SplashActivity.this.startActivity(intent);
+                SplashActivity.this.finish();
+            }
+        }, 1500);
 
     }
 }

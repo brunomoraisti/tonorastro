@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.NetworkType;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
@@ -78,7 +79,12 @@ public class MyWorkerManager extends Worker {
                 .addTag(tag)
                 .build();
 
-        WorkManager.getInstance(activity).enqueue(saveRequest);
+        WorkManager.getInstance(activity).enqueueUniquePeriodicWork(
+                tag,
+                ExistingPeriodicWorkPolicy.KEEP, //Existing Periodic Work policy
+                saveRequest //work request
+        );
+
     }
 
     public static void cancelarWorkManager(Activity activity, String tag) {

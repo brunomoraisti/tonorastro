@@ -10,8 +10,8 @@ android {
         applicationId "com.bmorais.tonorastro"
         minSdkVersion 21
         targetSdk 31
-        versionCode 17
-        versionName "1.1.7"
+        versionCode 18
+        versionName "1.1.8"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -42,10 +42,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation "androidx.work:work-runtime:2.7.1"
+    implementation 'androidx.work:work-runtime:2.7.1'
+    implementation 'androidx.work:work-rxjava2:2.7.1'
+    implementation 'androidx.work:work-gcm:2.7.1'
+    implementation "androidx.work:work-multiprocess:2.7.1"
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
     implementation 'com.google.android.play:core:1.10.3'
     implementation 'com.airbnb.android:lottie:3.6.0'
-    implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'

@@ -93,6 +93,13 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_principal);
 
+        view = findViewById(android.R.id.content);
+        adContainerView = findViewById(R.id.adview_container_principal);
+        pBar = view.findViewById(R.id.progressBarPrincipal);
+        //pBar.setVisibility(View.VISIBLE);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appBar_Emergencias);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_emergencia);
+        llAdviewPrincipal = findViewById(R.id.llAdviewPrincipal);
 
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -101,15 +108,22 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
             }
         });
 
-        view = findViewById(android.R.id.content);
+        //VARIAVEL DO PROJETO DA PROPAGANDA
+        if (SharedPrefManager.getInstance(this).pegarCampo(Variaveis.REMOVE_ADS).equals("1")) {
+            llAdviewPrincipal.setVisibility(View.GONE);
+        } else {
+            mAdView = new AdView(this);
+            mAdView.setAdUnitId("ca-app-pub-1598135185151212/3492791757");
+            adContainerView.addView(mAdView);
+            adContainerView.post(new Runnable() {
+                @Override
+                public void run() {
+                    Funcoes.loadBanner(PrincipalActivity.this, mAdView);
+                }
+            });
+        }
 
-        adContainerView = findViewById(R.id.adview_container_principal);
 
-        pBar = view.findViewById(R.id.progressBarPrincipal);
-        //pBar.setVisibility(View.VISIBLE);
-
-        appBarLayout = (AppBarLayout) findViewById(R.id.appBar_Emergencias);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_emergencia);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
@@ -187,6 +201,8 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
                 btnIncluir.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Snackbar.make(view, "Adicionando...", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
                         String objeto = inputObjeto.getText().toString();
                         String nomeObjeto = inputNomeObjeto.getText().toString();
 
@@ -217,22 +233,6 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
         });
 
         Log.v("### JWT: ", RetrofitInicializador.getTokenJWT(""));
-
-        llAdviewPrincipal = findViewById(R.id.llAdviewPrincipal);
-        //VARIAVEL DO PROJETO DA PROPAGANDA
-        if (SharedPrefManager.getInstance(this).pegarCampo(Variaveis.REMOVE_ADS).equals("1")) {
-            llAdviewPrincipal.setVisibility(View.GONE);
-        } else {
-            mAdView = new AdView(this);
-            mAdView.setAdUnitId("ca-app-pub-1598135185151212/3492791757");
-            adContainerView.addView(mAdView);
-            adContainerView.post(new Runnable() {
-                @Override
-                public void run() {
-                    Funcoes.loadBanner(PrincipalActivity.this, mAdView);
-                }
-            });
-        }
 
     }
 
@@ -333,7 +333,7 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
     }
 
     public void atualizarLista() {
-        Snackbar.make(view, "Aguarde! Buscando andamentos...", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+        Snackbar.make(view, "Aguarde! Buscando alterações...", Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
         EncomendasDao encomendasDao = new EncomendasDao(PrincipalActivity.this);
         ArrayList<EncomendasModel> encomendasModelArrayList = null;
@@ -526,6 +526,7 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
     @Override
     public void onResume() {
         super.onResume();
+        //atualizarLista();
     }
 
     @Override
@@ -533,8 +534,6 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
         super.onRestart();
         //if (mLastDayNightMode != Integer.parseInt(SharedPrefManager.getInstance(this).pegarCampo(Variaveis.THEMA_TELA)))
         //    recreate();
-        atualizarLista();
-
     }
 
     public void buscarEncomendas() {
@@ -549,6 +548,6 @@ public class PrincipalActivity extends AppCompatActivity implements SearchView.O
         if (((EntreguesPage) PrincipalActivity.pageAdapter.getItem(2)).adapter != null)
             ((EntreguesPage) PrincipalActivity.pageAdapter.getItem(2)).buscarEncomendaEntregue(this);
 
-        recreate();
+        onResume();
     }
 }
