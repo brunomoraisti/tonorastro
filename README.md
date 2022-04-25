@@ -1,3 +1,4 @@
+[[https://github.com/brunomoraisti/tonorastro/blob/master/app/src/main/res/mipmap-mdpi/logo_nome_amarelo.png|alt=octocat]]
 # tonorastro app
 Aplicativo para rastreamento de encomendas
 
@@ -13,6 +14,7 @@ O usuário informa o código de rastreamento, o app busca via API os andamentos 
 - Retrofit (Http)
 - Worke (Execução em segundo plano)
 - Lottie (Animação de imagens)
+- Firebase
 
 ## Estrutura
     tonorastro
@@ -28,3 +30,7 @@ O usuário informa o código de rastreamento, o app busca via API os andamentos 
     ├── AndamentoObjetoActivity
     ├── PrincipalActivity
     └── SplashActivity
+
+## API
+Foi desenvolvido uma API utilizando a linguagem PHP com o framework Slim 4 com arquitetura REST e autenticação JWT. Modelo utilizado https://github.com/brunomoraisti/slim4-framework
+
