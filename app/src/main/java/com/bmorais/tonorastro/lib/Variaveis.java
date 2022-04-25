@@ -15,7 +15,7 @@ public class Variaveis {
     public static String ALARMMANAGER = "ALARMMANAGER";
     public static String THEMA_TELA = "THEMA_TELA";
 
-    public static String KEY_JWT = "rizeovernightPMW@7139$rGfdHPljAsa3QFvvFdN5$bv9Sd&Ofh10";
+    public static String KEY_JWT = "";
 
 
 
