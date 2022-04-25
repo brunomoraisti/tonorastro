@@ -34,9 +34,7 @@ O usuário informa o código de rastreamento, o app busca via API os andamentos 
 Foi desenvolvido uma API utilizando a linguagem PHP com o framework Slim 4 com arquitetura REST e autenticação JWT. Modelo utilizado https://github.com/brunomoraisti/slim4-framework
 
 ## Telas
-<img src="https://github.com/brunomoraisti/tonorastro/blob/master/img/img1.jpeg?raw=true" alt="J" width="200"/>
-<img src="https://github.com/brunomoraisti/tonorastro/blob/master/img/img2.jpeg?raw=true" alt="J" width="200"/>
-<img src="https://github.com/brunomoraisti/tonorastro/blob/master/img/img3.jpeg?raw=true" alt="J" width="200"/>
-<img src="https://github.com/brunomoraisti/tonorastro/blob/master/img/img4.jpeg?raw=true" alt="J" width="200"/>
+<img src="https://github.com/brunomoraisti/tonorastro/blob/master/img/img1.jpeg?raw=true" alt="J" width="250"/><img src="https://github.com/brunomoraisti/tonorastro/blob/master/img/img2.jpeg?raw=true" alt="J" width="250"/>
+<img src="https://github.com/brunomoraisti/tonorastro/blob/master/img/img3.jpeg?raw=true" alt="J" width="250"/><img src="https://github.com/brunomoraisti/tonorastro/blob/master/img/img4.jpeg?raw=true" alt="J" width="250"/>
 
 
