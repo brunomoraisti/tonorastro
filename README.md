@@ -5,10 +5,10 @@
 https://play.google.com/store/apps/details?id=com.bmorais.tonorastro&hl=pt_BR&gl=US
 
 ## Contexto do problema
-Em tempos e compras on-line o rastreamento de encomendas vai ficando cada vez mais difícil de acompanhar, principalmente se for concentrar todos os rastreamentos em um só local. E ainda ser avisado quando houver novos andamentos.
+Em tempos de compras on-line, o rastreamento de encomendas vai ficando cada vez mais difícil de acompanhar, principalmente quando desejamos concentrar todos os rastreamentos em um só local e ainda ser avisado sobre os novos andamentos.
 
 ## Solução
-Desenvolvimento de um aplicativo para armazenar de forma off-line os andamentos das encomendas. Para utilizar o usuário deve informa o código de rastreamento, o app busca via API os andamentos e armazena no banco de dados local. De acordo com o tempo escolhido é feito uma busca das encomendas que não foram entregues, se tiver algum lançamento novo, é emmitido uma notificação informando que teve novo andamento para o pedido específico. Caso não tenha internet ou a encomenda não tenha sido lançada, a mesma ficará aguardando o lançamento.
+Desenvolvimento de um aplicativo para armazenar e acompanhar de forma off-line os andamentos das encomendas. Para utilizar, o usuário deverá informar o código de rastreamento e o app buscará via API os andamentos e armazená-lo no banco de dados local. De acordo com o tempo escolhido é feito uma busca das encomendas que não foram entregues, se tiver algum lançamento novo, é emitido uma notificação informando que teve novo andamento para o pedido específico. Caso não tenha, internet ou a encomenda não tenha sido lançada, ela ficará aguardando o lançamento.
 
 ## Dificuldades encontradas
 - Em alguns dispositivos o android possui a otimização de bateria o que muitas vezes restringe as atualizações em segundo plano, sendo necessário alterar nas configurações do app.
