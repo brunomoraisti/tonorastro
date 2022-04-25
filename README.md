@@ -1,6 +1,5 @@
 ![alt text](https://github.com/brunomoraisti/tonorastro/blob/master/app/src/main/res/mipmap-mdpi/logo_nome_amarelo.png?raw=true)
-# tonorastro app
-Aplicativo para rastreamento de encomendas
+### Aplicativo para rastreamento de encomendas
 
 ## Link Google Play
 https://play.google.com/store/apps/details?id=com.bmorais.tonorastro&hl=pt_BR&gl=US
